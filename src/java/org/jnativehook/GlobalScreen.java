@@ -66,7 +66,6 @@ public final class GlobalScreen {
 
 	static {
 		String libName = System.getProperty("jnativehook.lib.name", "JNativeHook");
-
 		try {
 			// Try to load the native library assuming the java.library.path was set correctly at launch.
 			System.loadLibrary(libName);

@@ -79,6 +79,8 @@ public class NativeKeyEvent extends NativeInputEvent {
 
 	/** The virtual key location. */
 	private int keyLocation;
+	
+	private String keyboardName;
 
 
 	/** The first number in the range of ID's used for native key events. */
@@ -330,13 +332,14 @@ public class NativeKeyEvent extends NativeInputEvent {
 	 *
 	 * @since 1.1
 	 */
-	public NativeKeyEvent(int id, long when, int modifiers, int rawCode, int keyCode, char keyChar, int keyLocation) {
+	public NativeKeyEvent(int id, long when, int modifiers, int rawCode, int keyCode, char keyChar, int keyLocation, String keyboardName) {
 		super(GlobalScreen.class, id, when, modifiers);
 
 		this.rawCode = rawCode;
 		this.keyCode = keyCode;
 		this.keyChar = keyChar;
 		this.keyLocation = keyLocation;
+		this.keyboardName = keyboardName;
 
 		if (id == NATIVE_KEY_TYPED && (keyChar == CHAR_UNDEFINED || keyCode != VC_UNDEFINED)) {
 			throw new IllegalArgumentException();
@@ -363,8 +366,8 @@ public class NativeKeyEvent extends NativeInputEvent {
 	 *
 	 * @since 1.1
 	 */
-	public NativeKeyEvent(int id, long when, int modifiers, int rawCode, int keyCode, char keyChar) {
-		this(id, when, modifiers, rawCode, keyCode, keyChar, KEY_LOCATION_UNKNOWN);
+	public NativeKeyEvent(int id, long when, int modifiers, int rawCode, int keyCode, char keyChar, String keyboardName) {
+		this(id, when, modifiers, rawCode, keyCode, keyChar, KEY_LOCATION_UNKNOWN, keyboardName);
 	}
 
 	/**
@@ -952,7 +955,14 @@ public class NativeKeyEvent extends NativeInputEvent {
 
 		return false;
 	}
-
+	
+	public void setKeyboardName(String keyboardName) {
+		this.keyboardName = keyboardName;
+	}
+	
+	public String getKeyboardName() {
+		return this.keyboardName;
+	}
 
 	/**
 	 * Returns a parameter string identifying this event. This method is useful
@@ -1048,6 +1058,10 @@ public class NativeKeyEvent extends NativeInputEvent {
 
 		param.append("rawCode=");
 		param.append(rawCode);
+		
+		param.append(',');
+		param.append("keyboardName=");
+		param.append(keyboardName);
 
 		return param.toString();
 	}

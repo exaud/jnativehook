@@ -182,7 +182,7 @@ static inline int create_NativeKeyEvent(JNIEnv *env) {
 	jclass NativeKeyEvent_class = (*env)->FindClass(env, "org/jnativehook/keyboard/NativeKeyEvent");
 	if (NativeKeyEvent_class != NULL) {
 		// Get the method ID for NativeKeyEvent constructor.
-		jmethodID init = (*env)->GetMethodID(env, NativeKeyEvent_class, "<init>", "(IJIIICI)V");
+		jmethodID init = (*env)->GetMethodID(env, NativeKeyEvent_class, "<init>", "(IJIIICILjava/lang/String;)V");
 
 		// Get the method ID for NativeKeyEvent.getKeyCode().
 		jmethodID getKeyCode = (*env)->GetMethodID(env, NativeKeyEvent_class, "getKeyCode", "()I");
@@ -192,6 +192,7 @@ static inline int create_NativeKeyEvent(JNIEnv *env) {
 
 		// Get the method ID for NativeKeyEvent.getKeyChar().
 		jmethodID getKeyChar = (*env)->GetMethodID(env, NativeKeyEvent_class, "getKeyChar", "()C");
+		jmethodID getKeyboardName = (*env)->GetMethodID(env, NativeKeyEvent_class, "getKeyboardName", "()Ljava/lang/String;");
 
 		if ((*env)->ExceptionCheck(env) == JNI_FALSE) {
 			org_jnativehook_keyboard_NativeKeyEvent = malloc(sizeof(NativeKeyEvent));
@@ -203,6 +204,7 @@ static inline int create_NativeKeyEvent(JNIEnv *env) {
 				org_jnativehook_keyboard_NativeKeyEvent->getKeyCode = getKeyCode;
 				org_jnativehook_keyboard_NativeKeyEvent->getKeyLocation = getKeyLocation;
 				org_jnativehook_keyboard_NativeKeyEvent->getKeyChar = getKeyChar;
+				org_jnativehook_keyboard_NativeKeyEvent->getKeyboardName = getKeyboardName;
 
 				status = JNI_OK;
 			}

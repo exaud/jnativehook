@@ -58,6 +58,7 @@ typedef struct _org_jnativehook_keyboard_NativeKeyEvent {
 	jmethodID getKeyCode;
 	jmethodID getKeyLocation;
 	jmethodID getKeyChar;
+	jmethodID getKeyboardName;
 } NativeKeyEvent;
 
 typedef struct _org_jnativehook_mouse_NativeMouseEvent {

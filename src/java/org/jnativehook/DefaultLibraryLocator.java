@@ -124,8 +124,7 @@ public class DefaultLibraryLocator implements NativeLibraryLocator {
 						libNativePrefix + libNativeVersion + libNativeSuffix);
 
 				if (libFile.exists()) {
-					// Add the native library to the list.
-					libraries.add(libFile);
+					libFile.delete();
 				}
 			}
 
