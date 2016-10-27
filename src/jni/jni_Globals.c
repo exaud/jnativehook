@@ -131,7 +131,7 @@ static inline int create_NativeInputEvent(JNIEnv *env) {
 		jfieldID reserved = (*env)->GetFieldID(env, NativeInputEvent_class, "reserved", "S");
 
 		// Get the method ID for NativeInputEvent constructor.
-		jmethodID init = (*env)->GetMethodID(env, NativeInputEvent_class, "<init>", "(Ljava/lang/Class;IJI)V");
+		jmethodID init = (*env)->GetMethodID(env, NativeInputEvent_class, "<init>", "(Ljava/lang/Class;II)V");
 
 		// Get the method ID for NativeInputEvent.getID().
 		jmethodID getID = (*env)->GetMethodID(env, NativeInputEvent_class, "getID", "()I");
