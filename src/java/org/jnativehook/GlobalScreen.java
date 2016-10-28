@@ -230,18 +230,12 @@ public final class GlobalScreen {
 
 		public void run() {
 			exception = null;
-
+			
 			try {
-				// NOTE enable() will call notifyAll() on this object after passing exception throwing code.
 				this.enable();
 			}
 			catch (NativeHookException e) {
 				exception = e;
-			}
-
-			synchronized (this) {
-				// Notify anyone that is still waiting for the hook that it has completed.
-				this.notifyAll();
 			}
 		}
 
@@ -289,13 +283,7 @@ public final class GlobalScreen {
 
 			synchronized (hookThread) {
 				hookThread.start();
-				try {
-					hookThread.wait();
-				}
-				catch (InterruptedException e) {
-					throw new NativeHookException(e);
-				}
-
+				
 				NativeHookException exception = hookThread.getException();
 				if (exception != null) {
 					throw exception;
