@@ -6,6 +6,8 @@ JNativeHook leverages platform-dependent native code through Java's native
 interface to create low-level system-wide hooks and deliver those events to
 your application.
 
+This custom fork developed by Exaud has extended NativeKeyEvent that also identifies the input device name.
+
 The following events are available via their respective listeners.
 * Key Press Events
 * Key Release Events
