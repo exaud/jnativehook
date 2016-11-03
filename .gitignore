@@ -9,3 +9,5 @@ build.properties
 *.project
 *.classpath
 *.jar
+/.externalToolBuilders/
+/.settings/
